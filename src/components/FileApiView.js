@@ -6,6 +6,8 @@ import queryString from 'query-string';
 // import * as api from '../api/api';
 import './FileApiView.js';
 import AddFileDialog from './AddFileDialog';
+import { isTemplateElement } from '@babel/types';
+import Style from './FileApiView.css';
 
 class FileApiView extends Component {
   constructor(props) {
@@ -22,15 +24,27 @@ class FileApiView extends Component {
       sObjectId: (window.FX && window.FX.SALESFORCE && window.FX.SALESFORCE.currentObjectId) || queryString.parse(document.location.search).id
     };
   }
+  handleRowAction = (item, action) => {
+    console.log(item, action);
+  };
+
   render() {
+
+    
     return (
       <IconSettings iconPath="/assets/icons">
-        <div className="slds-grid slds-grid_vertical">
+        <div className="slds-grid slds-grid_vertical component-container">
           <Card
           heading="Files"
           icon={<Icon category="standard" name="document" size="small" />}
+          headerActions={
+            (<Button
+              label="Attach File"
+              onClick={this.handleRowAction}
+              />
+            )
+          }
           >
-            <Button>Attach File</Button>
 
             <DataTable>
               <DataTableColumn
@@ -48,6 +62,7 @@ class FileApiView extends Component {
               {label: "Delete"},
               {label: "Dowload"}
             )}
+            onAction={this.handleRowAction}
             dropdown={<Dropdown />}
             />
           </Card>

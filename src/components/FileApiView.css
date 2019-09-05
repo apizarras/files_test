@@ -1,52 +1,7 @@
-.linkBack {
-  margin-bottom: 0.5em;
-}
-.fileLink {
-  color: #000;
-  text-decoration: underline;
-}
-
-.panel {
-  background-color: #f2f3f3;
-  padding: 5px;
-  margin: 5px 0;
-  border-radius: 5px !important;
-  border: 1px solid #e0e3e5 ;
-  overflow-x: auto;
-  font-size: small;
-}
-
-table {
-  font-size: 0.9em;
-}
-
-table > tbody {
-  background-color: #fff;
-  border: 1px solid #e0e3e5 ;
-}
-table > tr {
-  background-color: #fff;
-}
-
-table > thead {
-  background-color: #f2f3f3;
-}
-table > thead > tr > th {
-  padding: 5px !important;
-}
-
-table > tfoot {
-  background-color: #f2f3f3;
-}
-
-td:first-child {
-    padding-left: 10px !important;
-}
-
-td:last-child {
-   padding-right: 10px !important;
-}
-
-td {
-  padding: 0.25em .7em !important;
+.component-container {
+  background: #061c3e;
+  border: 1px solid rgb(221, 219, 218);
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  margin: 5px;
 }
