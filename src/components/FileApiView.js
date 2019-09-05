@@ -62,8 +62,9 @@ class FileApiView extends Component {
               {label: "Delete"},
               {label: "Dowload"}
             )}
+            menuPostion="overflowBoundaryElement"
             onAction={this.handleRowAction}
-            dropdown={<Dropdown />}
+            dropdown={<Dropdown dir="rtl" />}
             />
           </Card>
         </div>
