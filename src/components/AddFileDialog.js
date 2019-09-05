@@ -1,6 +1,6 @@
 import React from 'react';
 // import * as api from '../api/api';
-import { Modal, Button }  from '@salesforce/design-system-react';
+import { Modal, Button, Combobox, Lookup }  from '@salesforce/design-system-react';
 import './AddFileDialog.css';
 
 export default function AddFileDialog(props) {
@@ -14,5 +14,16 @@ export default function AddFileDialog(props) {
   function uploadFile() {
     const fxFileInput = document.getElementById('fxFileInput');
 
+    return (
+      <Modal
+        footer={[
+          <Button label="Cancel" onClick={this.toggleOpen} />,
+          <Button label="Save" onClick={this.toggleOpen} />
+        ]}
+        heading="Add File"
+      >
+
+      </Modal>
+    )
   }
 }
