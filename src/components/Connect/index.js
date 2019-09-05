@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { getConnection, login, logout } from "./connection";
-
+import { Button } from '@salesforce/design-system-react';
 
 const isDEV = process.env.NODE_ENV !== "production";
 const PRODUCTION = "https://login.salesforce.com";
@@ -76,51 +76,12 @@ class Connect extends Component {
     const { isBusy, username, password, error } = this.state;
 
     return (
-      <Form style={styles.form} onSubmit={this.authenticate}>
-        <Segment style={styles.segment} loading={isBusy}>
-          <Header icon="settings" content="Developer Login" />
-
-          {error && <Message negative>{error.message}</Message>}
-
-          <Form.Field>
-            <Input
-              icon="user"
-              iconPosition="left"
-              placeholder="Username"
-              autoFocus={!username}
-              name="username"
-              value={username}
-              onChange={this.handleInputChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Input
-              icon="lock"
-              iconPosition="left"
-              placeholder="Password"
-              autoFocus={!!username}
-              name="password"
-              type="password"
-              value={password}
-              onChange={this.handleInputChange}
-            />
-          </Form.Field>
-          <Button.Group widths="2">
-            <Button
-              primary
-              content="Production"
-              value={PRODUCTION}
-              onClick={this.authenticate}
-            />
-            <Button.Or />
-            <Button
-              content="Sandbox"
-              value={SANDBOX}
-              onClick={this.authenticate}
-            />
-          </Button.Group>
-        </Segment>
-      </Form>
+      <div className="slds-form-element">
+        <label className="slds-form-element__label" for="form-element-01">Login Form</label>
+        <div className="slds-form-element__control">
+          <input type"text" id="form-element" placeholder="username" className="slds-input" />
+        </div>
+      </div>
     );
   }
 
