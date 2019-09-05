@@ -57,11 +57,11 @@ class FileApiView extends Component {
                 label="Size" />
             </DataTable>
             <DataTableRowActions
-            options={(
+            options={[
               {label: "Preview"},
               {label: "Delete"},
               {label: "Dowload"}
-            )}
+            ]}
             menuPostion="overflowBoundaryElement"
             onAction={this.handleRowAction}
             dropdown={<Dropdown dir="rtl" />}
