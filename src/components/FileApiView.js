@@ -3,7 +3,7 @@ import { Icon, IconSettings, Card, Button, DataTable, DataTableColumn, DataTable
 import Loading from './Loading';
 import queryString from 'query-string';
 // import moment from 'moment';
-// import * as api from '../api/api';
+import * as api from '../api/api';
 import './FileApiView.js';
 import AddFileDialog from './AddFileDialog';
 import { isTemplateElement } from '@babel/types';
@@ -24,6 +24,35 @@ class FileApiView extends Component {
       sObjectId: (window.FX && window.FX.SALESFORCE && window.FX.SALESFORCE.currentObjectId) || queryString.parse(document.location.search).id
     };
   }
+
+  fetchData = () => {
+    const { connection } = this.props;
+    const { sObjectId, embedded } = this.state;
+
+    this.setState({
+      isBusy: true
+    });
+
+    return api
+      .globalDescribe(connection)
+      .then(() => {
+        return api.fetchDescription(connection, 'ContentVersion')
+      })
+      .then(() => {
+        const description = api.descriptions[sObjectId.slice(0,3)];
+        return Promise.all([api.fetchFiles(connection, sObjectId, embedded), api.getObjectInfo(connection, description.name, sObjectId)])
+      })
+      .then(([files, objectName]) => {
+        this.setState({ files, objectName, isBusy: false });
+      })
+      .catch(function(err) {
+        if (err.errorCode === 'INVALID_SESSION_ID') {
+          this.setState({ sessionExpired: true, isBusy: false });
+        }
+        console.log(`%c>>>> ERROR `, `background-color: red; color:yellow;` , err );
+      })
+  };
+  
   handleRowAction = (item, action) => {
     console.log(item, action);
   };
