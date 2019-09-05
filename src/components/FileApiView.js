@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Icon, IconSettings, Card, Button }  from '@salesforce/design-system-react';
+import { Icon, IconSettings, Card, Button, DataTable, DataTableColumn, DataTableRowActions, Dropdown }  from '@salesforce/design-system-react';
 import Loading from './Loading';
 import queryString from 'query-string';
 // import moment from 'moment';
@@ -30,8 +30,26 @@ class FileApiView extends Component {
           heading="Files"
           icon={<Icon category="standard" name="document" size="small" />}
           >
-              <Button>Attach File</Button>
-          Stuff 
+            <Button>Attach File</Button>
+
+            <DataTable>
+              <DataTableColumn
+                label="Title" />
+              <DataTableColumn
+                label="Owner" />
+              <DataTableColumn
+                label="Last Modified" />
+              <DataTableColumn
+                label="Size" />
+            </DataTable>
+            <DataTableRowActions
+            options={(
+              {label: "Preview"},
+              {label: "Delete"},
+              {label: "Dowload"}
+            )}
+            dropdown={<Dropdown />}
+            />
           </Card>
         </div>
       </IconSettings>
