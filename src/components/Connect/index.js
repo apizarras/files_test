@@ -14,6 +14,8 @@ class Connect extends Component {
     password: ""
   };
 
+ 
+
   componentDidMount() {
     this.renderDevTools();
   }
@@ -22,8 +24,9 @@ class Connect extends Component {
     this.renderDevTools();
   }
 
-  handleInputChange = (e, { name, value }) => {
-    this.setState({ [name]: value });
+  handleInputChange = (e) => {
+    const value = e.target.value;
+    this.setState({ [e.target.name]: value });
   };
 
   authenticate = (e, { value }) => {
@@ -76,13 +79,18 @@ class Connect extends Component {
     const { isBusy, username, password, error } = this.state;
 
     return (
-      <div className="slds-form-element">
-        <label className="slds-form-element__label" for="form-element-01">Login Form</label>
-        <div className="slds-form-element__control">
-          <input type"text" id="form-element" placeholder="username" className="slds-input" />
-        </div>
-      </div>
-    );
+      <form>
+        <h3>Login Form</h3>
+        <label>Username:</label>
+          <input type="text" name="username" value={this.state.username} placeholder="username" onChange={this.handleInputChange} />
+        <label>Password:</label>
+          <input type="password" name="password" value={this.state.password} placeholder="password" onChange={this.handleInputChange} />
+        
+        <Button label="PRODUCTION" value={PRODUCTION} onSubmit={this.authenticate} />
+        <Button label="SANDBOX" value={SANDBOX} onSubmit={this.authenticate} />
+      </form>
+    )
+
   }
 
   render() {
