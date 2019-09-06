@@ -31,7 +31,6 @@ class Connect extends Component {
 
   authenticate = (e, { value }) => {
     e.preventDefault();
-
     const { username, password } = this.state;
     if (!value || !username || !password) return;
 
@@ -79,15 +78,15 @@ class Connect extends Component {
     const { isBusy, username, password, error } = this.state;
 
     return (
-      <form>
+      <form onSubmit={this.authenticate}>
         <h3>Login Form</h3>
         <label>Username:</label>
           <input type="text" name="username" value={this.state.username} placeholder="username" onChange={this.handleInputChange} />
         <label>Password:</label>
           <input type="password" name="password" value={this.state.password} placeholder="password" onChange={this.handleInputChange} />
         
-        <Button label="PRODUCTION" value={PRODUCTION} onSubmit={this.authenticate} />
-        <Button label="SANDBOX" value={SANDBOX} onSubmit={this.authenticate} />
+        <Button label="PRODUCTION" value={PRODUCTION} onClick={this.authenticate} />
+        <Button label="SANDBOX" value={SANDBOX} onClick={this.authenticate} />
       </form>
     )
 
